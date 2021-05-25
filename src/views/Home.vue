@@ -1,13 +1,21 @@
 <template>
-  <div class="home">
-    <input type="text" v-model="Query" />
-    {{ Query }}
-    <ul v-for="result in Result" :key="result.data.id.raw">
-      <li v-on:click="getAnime(result.data.anime_id.raw)">
-        {{ result.data.name.raw }}
-      </li>
-    </ul>
-  </div>
+  <b-container class="p-5" style="text-align:center;">
+    <b-container class="p-3">
+      <b-form-input v-model="Query" placeholder="Search Anime"></b-form-input>
+    </b-container>
+
+    <b-row class="searchResult" style="justify-content:center;">
+      <b-col
+        v-for="result in Result"
+        :key="result.data.id.raw"
+        class="animeBox"
+        cols="3"
+        v-on:click="getAnime(result.data.anime_id.raw)"
+      >
+        <h4>{{ result.data.name.raw }}</h4>
+      </b-col>
+    </b-row>
+  </b-container>
 </template>
 
 <script>
@@ -67,8 +75,17 @@ export default {
 </script>
 
 <style>
-.home {
-  padding-left: 10%;
-  padding-right: 10%;
+.animeBox {
+  border: 2.5px solid black;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+}
+.searchResult {
+  padding: 5px;
+  margin: 5px;
+}
+.animeBox:hover {
+  cursor: pointer;
 }
 </style>
