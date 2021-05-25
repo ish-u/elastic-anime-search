@@ -3,7 +3,9 @@
     <input type="text" v-model="Query" />
     {{ Query }}
     <ul v-for="result in Result" :key="result.data.id.raw">
-      <li>{{ result.data.name.raw }}</li>
+      <li v-on:click="getAnime(result.data.anime_id.raw)">
+        {{ result.data.name.raw }}
+      </li>
     </ul>
   </div>
 </template>
@@ -16,21 +18,28 @@ var client = ElasticAppSearch.createClient({
   endpointBase: process.env.VUE_APP_URL,
   engineName: "anime-dataset",
 });
+
 export default {
   name: "Home",
   data() {
     return {
       Result: "",
       Query: "",
+      Anime: "",
     };
   },
   components: {},
   methods: {
-    getData() {
+    // Searching the Query
+    search() {
       if (this.Query != "") {
         var options = {
           search_fields: { name: {} },
-          result_fields: { id: { raw: {} }, name: { raw: {} } },
+          result_fields: {
+            id: { raw: {} },
+            name: { raw: {} },
+            anime_id: { raw: {} },
+          },
         };
         client
           .search(this.Query, options)
@@ -44,10 +53,14 @@ export default {
         this.Result = "";
       }
     },
+    // Going to the Anime Details View
+    getAnime(ID) {
+      this.$router.push(`/anime/${ID}`);
+    },
   },
   watch: {
     Query: function() {
-      this.getData();
+      this.search();
     },
   },
 };

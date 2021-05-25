@@ -1,0 +1,22 @@
+{
+  "name": "anime-elastic",
+  "version": "1.0.0",
+  "description": "trying to make an anime search using elastic app search",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
+  },
+  "author": "Anmol Gupta (GitHub:@ish-u)",
+  "license": "ISC",
+  "dependencies": {
+    "@elastic/app-search-javascript": "^7.8.0",
+    "@elastic/app-search-node": "^7.12.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "i": "^0.3.6",
+    "mal-scraper": "^2.11.3",
+    "nodemon": "^2.0.7",
+    "npm": "^7.14.0"
+  }
+}
