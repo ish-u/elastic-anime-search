@@ -12,8 +12,8 @@
 // @ is an alias to /src
 var ElasticAppSearch = require("@elastic/app-search-javascript");
 var client = ElasticAppSearch.createClient({
-  searchKey: "search-qhqmnkqi98jfygetrg5b1tny",
-  endpointBase: "https://test-a53db8.ent.asia-south1.gcp.elastic-cloud.com",
+  searchKey: process.env.VUE_APP_SEARCH_KEY,
+  endpointBase: process.env.VUE_APP_URL,
   engineName: "anime-dataset",
 });
 export default {
